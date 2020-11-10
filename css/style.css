@@ -1,0 +1,83 @@
+body{
+  background-color: #efbe55;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.play_box{
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 750px;
+}
+
+#top{
+  position: absolute;
+  z-index: 15;
+}
+
+
+.command_box{
+  width: 100%;
+  position: absolute;
+  top: 5%;
+  left: 10%;
+  z-index: 11;
+}
+
+.command_list{
+  width: 40%;
+  display: flex;
+  align-items: left;
+}
+
+.command{
+  width: 30%;
+}
+
+#gu_img,#cho_img,#pa_img{
+  width: 100%;
+}
+ 
+.play_screen{
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+}
+
+#player{
+  position: absolute;
+  bottom: 6%;
+  left: 5%;
+  z-index: 13;
+  width: 5%;
+}
+
+#PC{
+  position: absolute;
+  bottom: 6%;
+  z-index: 12;
+  width: 5%;
+}
+
+.pc_hand_box{
+  position: absolute;
+  bottom: 55%;
+  left: 20%;
+  z-index: 14;
+}
+
+#pc_hand{
+  width: 60%;
+}
+
+#win{
+  position: absolute;
+  z-index: 1;
+}
+
+#lose{
+  position: absolute;
+  z-index: 2;
+}

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/sanitize.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <head>
+  </head>
+  <main>
+    <div class="play_box">
+      <button id="top">
+        <img src="img/top.jpg" alt="おーぷにんぐ">
+      </button>
+      <div class="command_box">
+        <ul class="command_list">
+          <li class="command"><img src="img/グー.jpg" alt="ぐー" id="gu_img"></li>
+          <li class="command"><img src="img/チョキ.jpg" alt="ちょき" id="cho_img"></li>
+          <li class="command"><img src="img/パー.jpg" alt="ぱー" id="pa_img"></li>
+        </ul>
+      </div>
+      <div class="play_screen">
+        <img src="img/play画面.jpg" alt="ぷれいちゅう">
+      </div>
+      <div class="pc_hand_box">
+        <img src="img/PCのて0.jpg" alt="あいての手" id="pc_hand">
+      </div>
+      <img src="img/プレイヤー.png" alt="白" id="player">
+      <img src="img/PC.png" alt="黒" id="PC">
+      <img src="img/win.jpg" alt="あなたの勝ち" id="win">
+      <img src="img/lose.jpg" alt="あなたの負け" id="lose">
+    </div>
+  </main>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <script>
+
+    const Top = document.getElementById('top');
+    Top.addEventListener('click', () => {
+      console.log('ok');
+      Top.style.zIndex = 0;
+    });
+
+    const Gu = document.getElementById('gu_img');
+    const Cho = document.getElementById('cho_img');
+    const Pa = document.getElementById('pa_img');
+    const pcHand = document.getElementById('pc_hand');
+
+    const playerStateGu = { count: 0 };
+    const playerStateCho = { count: 0 };
+    const playerStatePa = { count: 0 };
+    const pcStateGu = { count: 0 };
+    const pcStateCho = { count: 0 };
+    const pcStatePa = { count: 0 };
+
+    var playerPointGu = 0;
+    var playerPointCho = 0;
+    var playerPointPa = 0;
+    var pcPointGu = 0;
+    var pcPointCho = 0;
+    var pcPointPa = 0;
+
+    var playerPoint;
+    var pcPoint;
+
+    const Win = document.getElementById('win');
+    const Lose = document.getElementById('lose');
+
+    var player = document.getElementById('player');
+    var PC = document.getElementById('PC');
+
+
+    function pointlog() {
+      console.log(playerPoint, pcPoint)
+    };
+
+
+
+
+
+    const min = 0;
+    const max = 2;
+
+    Gu.onclick = function () {
+      const randumNumber = Math.floor(Math.random() * (max - min + 1));
+      if (randumNumber == 0) {
+        console.log('コンピューターはパーあなたの負け');
+        pcHand.src = 'img/PCのてぱー.jpg';
+        pcPointPa = ++pcStatePa.count * 6;
+        pcPoint = (pcPointGu + pcPointCho + pcPointPa);
+        setTimeout(pointlog, 100);
+        pcidou();
+
+
+
+        if (pcPoint >= 18) {
+          console.log('負け');
+          Lose.style.zIndex = 15;
+        };
+
+
+      } else if (randumNumber == 1) {
+        console.log('コンピューターはチョキあなたの勝ち');
+        pcHand.src = 'img/PCのてちょきー.jpg';
+        playerPointGu = ++playerStateGu.count * 3;
+        playerPoint = (playerPointGu + playerPointCho + playerPointPa);
+        setTimeout(pointlog, 100);
+        playeridou();
+
+        if (playerPoint >= 18) {
+          console.log('勝ち');
+          Win.style.zIndex = 15;
+        };
+
+      } else if (randumNumber == 2) {
+        console.log('コンピューターはグーあいこです');
+        pcHand.src = 'img/PCのてぐー.jpg';
+        setTimeout(pointlog, 100);
+      }
+    };
+
+    Cho.onclick = function () {
+      const randumNumber = Math.floor(Math.random() * (max - min + 1));
+      if (randumNumber == 0) {
+        console.log('コンピューターはパーあなたの勝ち');
+        pcHand.src = 'img/PCのてぱー.jpg';
+        playerPointCho = ++playerStateCho.count * 6;
+        playerPoint = (playerPointGu + playerPointCho + playerPointPa);
+        setTimeout(pointlog, 100);
+        playeridou();
+
+        if (playerPoint >= 18) {
+          console.log('勝ち');
+          Win.style.zIndex = 15;
+        };
+
+      } else if (randumNumber == 1) {
+        console.log('コンピューターはチョキあいこです');
+        pcHand.src = 'img/PCのてちょきー.jpg';
+        setTimeout(pointlog, 100);
+
+
+      } else if (randumNumber == 2) {
+        console.log('コンピューターはグーあなたの負け');
+        pcHand.src = 'img/PCのてぐー.jpg';
+        pcPointGu = ++pcStateGu.count * 3;
+        pcPoint = (pcPointGu + pcPointCho + pcPointPa);
+        setTimeout(pointlog, 100);
+        pcidou();
+
+
+        if (pcPoint >= 18) {
+          console.log('負け');
+          Lose.style.zIndex = 15;
+        };
+
+      }
+    };
+
+    Pa.onclick = function () {
+      const randumNumber = Math.floor(Math.random() * (max - min + 1));
+      if (randumNumber == 0) {
+        console.log('コンピューターはパーあいこです');
+        pcHand.src = 'img/PCのてぱー.jpg';
+        setTimeout(pointlog, 100);
+
+
+      } else if (randumNumber == 1) {
+        console.log('コンピューターはチョキあなたの負け');
+        pcHand.src = 'img/PCのてちょきー.jpg';
+        pcPointCho = ++pcStateCho.count * 6;
+        pcPoint = (pcPointGu + pcPointCho + pcPointPa);
+        setTimeout(pointlog, 100);
+        pcidou();
+
+        if (pcPoint >= 18) {
+          console.log('負け');
+          Lose.style.zIndex = 15;
+        };
+
+
+      } else if (randumNumber == 2) {
+        console.log('コンピューターはグーあなたの勝ち');
+        pcHand.src = 'img/PCのてぐー.jpg';
+        playerPointPa = ++playerStatePa.count * 6;
+        playerPoint = (playerPointGu + playerPointCho + playerPointPa);
+        setTimeout(pointlog, 100);
+        playeridou();
+
+        if (playerPoint >= 18) {
+          console.log('勝ち');
+          Win.style.zIndex = 15;
+        };
+
+      }
+    };
+
+    function playeridou() {
+      var player = document.getElementById('player');
+      var PC = document.getElementById('PC');
+      console.log('移動読み込み')
+      if (playerPoint == 3) {
+        player.style.bottom = 140 + 'px';
+        player.style.left = 380 + 'px';
+      } else if (playerPoint == 6) {
+        player.style.bottom = 230 + 'px';
+        player.style.left = 578 + 'px';
+      } else if (playerPoint == 9) {
+        player.style.bottom = 320 + 'px';
+        player.style.left = 770 + 'px';
+      } else if (playerPoint == 12) {
+        player.style.bottom = 410 + 'px';
+        player.style.left = 962 + 'px';
+      } else if (playerPoint == 15) {
+        player.style.bottom = 500 + 'px';
+        player.style.left = 1150 + 'px';
+      } else if (playerPoint == 18) {
+        player.style.bottom = 590 + 'px';
+        player.style.left = 1342 + 'px';
+      }
+    };
+
+    function pcidou() {
+      var player = document.getElementById('player');
+      var PC = document.getElementById('PC');
+      console.log('移動読み込み')
+      if (pcPoint == 3) {
+        PC.style.bottom = 140 + 'px';
+        PC.style.left = 380 + 'px';
+      } else if (pcPoint == 6) {
+        PC.style.bottom = 230 + 'px';
+        PC.style.left = 578 + 'px';
+      } else if (pcPoint == 9) {
+        PC.style.bottom = 320 + 'px';
+        PC.style.left = 770 + 'px';
+      } else if (pcPoint == 12) {
+        PC.style.bottom = 410 + 'px';
+        PC.style.left = 962 + 'px';
+      } else if (pcPoint == 15) {
+        PC.style.bottom = 500 + 'px';
+        PC.style.left = 1150 + 'px';
+      } else if (pcPoint == 18) {
+        PC.style.bottom = 590 + 'px';
+        PC.style.left = 1342 + 'px';
+      }
+    };
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+</body>
+
+</html>
