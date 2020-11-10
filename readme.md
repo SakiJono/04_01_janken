@@ -1,6 +1,6 @@
 # じゃんけんグリコ
 
-- デプロイ先
+- デプロイ先https://sakijono.github.io/04_01_janken/.
 
 ## プロダクトの紹介
 
